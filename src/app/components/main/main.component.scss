@@ -1,0 +1,44 @@
+.container-fluid {
+  height: 100vh;
+}
+
+.temp {
+  font-size: 8rem;
+}
+.city {
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px #000000;
+}
+.date {
+  font-size: 1.5rem;
+}
+.condition-icon {
+  width: 100px;
+  height: 100px;
+}
+
+
+@media screen and (max-width: 991px) {
+  .left-side {
+    height: 50% !important;
+  }
+}
+
+.location-info {
+  @media screen and (max-width: 991px) {
+    bottom: 0;
+    left: 2rem;
+    .temp {
+      font-size: 4rem;
+    }
+    .city {
+      font-size: 2rem;
+    }
+    .condition-icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  bottom: 4rem;
+  left: 4rem;
+}

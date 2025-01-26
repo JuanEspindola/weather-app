@@ -1,0 +1,36 @@
+<div class="container-fluid text-white bg-{{ styleInfo.bgClass }}">
+  <div class="row h-100 d-flex">
+    <div
+      class="left-side position-relative col-lg-6 d-flex flex-column justify-content-between"
+    >
+      <div class="d-lg-none align-self-end col-6">
+        <app-search-location></app-search-location>
+      </div>
+      @if(weatherData$ | async; as data){
+      <div
+        class="location-info position-absolute d-flex gap-2 align-items-center justify-content-center"
+      >
+        <span class="temp text-shadow"> {{ data?.temp }}° </span>
+        <div class="d-flex flex-column">
+          <span class="city text-shadow">{{ data?.city }}</span>
+          <span class="text-shadow">{{
+            data?.date | date : "h:mm a - MMM d, y"
+          }}</span>
+        </div>
+        <!-- ICON -->
+        <img
+          class="condition-icon filter"
+          [src]="styleInfo.icon"
+          alt="current weather icon"
+        />
+      </div>
+      }
+    </div>
+    <!-- SPACER -->
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-4 align-self-end me-0 ms-0 ps-0 pe-0">
+      <app-weather-info></app-weather-info>
+    </div>
+  </div>
+</div>

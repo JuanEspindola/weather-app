@@ -1,0 +1,120 @@
+<div class="container-fluid text-white filter">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-none d-lg-block d-xl-block">
+        <app-search-location></app-search-location>
+      </div>
+      <p class="text-shadow legend ms-2 mt-5">Weather details...</p>
+
+      <!-- DETAILS BOX -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="col-12 col-lg-10 mx-auto p-2 details-card">
+            <p class="legend text-shadow">
+              {{ cityWeather?.condition?.text | uppercase }}
+            </p>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <span class="text-shadow fs-5">Temp max</span>
+              <div class="d-flex gap-4 align-items-center">
+                @if(cityWeather){
+                <span class="fs-4 text-shadow"
+                  >{{ cityWeather.temp_max }}°</span
+                >
+                } @else {
+                <span>- -</span>
+                }
+                <span class="max-temp-icon icon"></span>
+              </div>
+            </div>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <span class="text-shadow fs-5">Temp min</span>
+              <div class="d-flex gap-4 align-items-center">
+                @if(cityWeather){
+                <span class="fs-4 text-shadow"
+                  >{{ cityWeather.temp_min }}°</span
+                >
+                } @else {
+                <span>- -</span>
+                }
+                <span class="min-temp-icon icon"></span>
+              </div>
+            </div>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <span class="text-shadow fs-5">Humidity</span>
+              <div class="d-flex gap-4 align-items-center">
+                @if(cityWeather){
+                <span class="fs-4 text-shadow"
+                  >{{ cityWeather.humidity }}%</span
+                >
+                } @else {
+                <span>- -</span>
+                }
+                <span class="humidity-icon icon"></span>
+              </div>
+            </div>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <span class="text-shadow fs-5">Cloudy</span>
+              <div class="d-flex gap-4 align-items-center">
+                @if(cityWeather){
+                <span class="fs-4 text-shadow">{{ cityWeather.clouds }}%</span>
+                } @else {
+                <span>- -</span>
+                }
+                <span class="cloudy-icon icon"></span>
+              </div>
+            </div>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <span class="text-shadow fs-5">Wind</span>
+              <div class="d-flex gap-4 align-items-center">
+                @if(cityWeather){
+                <span class="fs-4 text-shadow"
+                  >{{ cityWeather.wind_speed }} km/h</span
+                >
+                } @else {
+                <span>- -</span>
+                }
+                <span class="wind-icon icon"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="mt-5" />
+
+      <p class="text-shadow legend ms-4 mt-5">Today's Wheather Forecast...</p>
+
+      <!-- HOURLY FORECAST -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="col-12 col-lg-10 mx-auto p-2 details-card">
+            @for(hour of cityWeather?.hourly; track hour.icon) {
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <!-- ICON -->
+                <!-- <span class="icon icon-lg cloudy-icon me-5"></span> -->
+                <img [src]="hour.icon" class="icon-img me-2" />
+
+                <!-- TIME AND CONDITION -->
+                <div class="d-flex flex-column">
+                  <span class="text-shadow">{{
+                    hour.time | date : "HH:mm"
+                  }}</span>
+                  <span class="text-shadow">{{
+                    hour.condition | uppercase
+                  }}</span>
+                </div>
+              </div>
+              <span class="fs-4 text-shadow">{{ hour.temp }}°</span>
+            </div>
+            } @empty {
+            <p class="legend">No data available</p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

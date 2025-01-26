@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./base/mixins";
+@import "./base/variables";
+
+* {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+.icon {
+  &.max-temp-icon {
+    @include icon(max-temp-icon);
+  }
+  &.humidity-icon {
+    @include icon(humidity-icon);
+  }
+  &.min-temp-icon {
+    @include icon(min-temp-icon);
+  }
+  &.wind-icon {
+    @include icon(wind-icon);
+  }
+  &.cloudy-icon {
+    @include icon(cloudy-icon);
+  }
+}
+
+.bg-partly-cloudy {
+  @include background(partly-cloudy);
+}
+.bg-cloudy {
+  @include background(cloudy);
+}
+.bg-thunderstorm {
+  @include background(thunderstorm);
+}
+.bg-snow {
+  @include background("snow");
+}
+.bg-light-precipitation,
+.bg-heavy-precipitation {
+  @include background(rain);
+}
+.bg-fog {
+  @include background(fog);
+}
+.bg-clouds-night {
+  @include background(clouds-night);
+}
+// .bg-drizzle {
+//   @include background(drizzle);
+// }
+.bg-atmosphere {
+  @include background(fog);
+}
+.bg-clear-day {
+  @include background("clear");
+}
+.bg-night {
+  @include background(night);
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.filter {
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+// .low-opacity {
+//   @include opacity($opacity-low);
+// }
+// .medium-opacity {
+//   @include opacity($opacity-med);
+// }
+// .high-opacity {
+//   @include opacity($opacity-high);
+// }

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="position-relative col-12 mt-4 mb-5">
+    <input
+      type="text"
+      class="form-control search-location"
+      placeholder="Search location..."
+      [formControl]="cityName"
+      (keydown)="handleKeyDown($event)"
+    />
+    <div class="row">
+      @if(searchLocationService.getDisplayResults() | async){
+      <div class="z-3 position-absolute search-location-results">
+        <ul class="list-group">
+          @for(result of this.searchLocationService.getResults() | async; track
+          result.id; let i = $index){
+          <li
+            role="button"
+            class="list-group-item list-group-item-action"
+            [class.active]="i === activeIndex"
+            (click)="selectLocation(result)"
+            (mouseenter)="activeIndex = i"
+          >
+            {{ result.name }}, {{ result.country }}
+          </li>
+          }
+        </ul>
+      </div>
+
+      }
+    </div>
+  </div>
+</div>
