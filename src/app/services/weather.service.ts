@@ -19,6 +19,7 @@ import { environment } from '../../environments/environment';
 export class WeatherService {
   private http = inject(HttpClient);
   private baseUrl = environment.baseUrl;
+  private apiKey = environment.weatherApiKey;
 
   private cityWeahter: BehaviorSubject<SimpleWeather | null> =
     new BehaviorSubject<SimpleWeather | null>(null);
@@ -36,14 +37,14 @@ export class WeatherService {
 
   getCitiesByName(term: string): Observable<City[]> {
     return this.http.get<City[]>(
-      `${this.baseUrl}/search.json?q=${term}&key=${environment.weatherApiKey}`
+      `${this.baseUrl}/search.json?q=${term}&key=${this.apiKey}`
     );
   }
 
   getCityByCoords({ lat, lon }: City): void {
     this.http
       .get<Forecast>(
-        `${this.baseUrl}/forecast.json?q=${lat},${lon}&days=1&aqi=no&key=${environment.weatherApiKey}`
+        `${this.baseUrl}/forecast.json?q=${lat},${lon}&days=1&aqi=no&key=${this.apiKey}`
       )
       .subscribe({
         next: (data: Forecast) => {
@@ -90,15 +91,6 @@ export class WeatherService {
         data.forecast.forecastday[0].hour,
         data.location.localtime
       ),
-      // data.forecast.forecastday[0].hour.map(
-      //   (hour: Current): Hour => ({
-      //     time: hour.time ?? '',
-      //     temp: hour.temp_c,
-      //     icon: hour.condition.icon,
-      //     condition: hour.condition.text,
-      //     code: hour.condition.code,
-      //   })
-      // ),
     };
   }
 
